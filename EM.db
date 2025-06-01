@@ -1,0 +1,24 @@
+Database: emergency-network
+
+Collections:
+1. users
+   - _id: ObjectId
+   - facilityName: String
+   - facilityType: String (rural_clinic, urban_hospital, specialty_center)
+   - email: String
+   - password: String (hashed)
+   - createdAt: Date
+
+2. cases
+   - _id: ObjectId
+   - fromFacility: ObjectId (ref: users)
+   - toFacility: ObjectId (ref: users)
+   - patientInfo: Object (contains patient details)
+   - status: String (pending, accepted, in_transit, completed)
+   - createdAt: Date
+   - updatedAt: Date
+
+Indexes:
+- users.email: unique
+- cases.fromFacility: index
+- cases.toFacility: index
